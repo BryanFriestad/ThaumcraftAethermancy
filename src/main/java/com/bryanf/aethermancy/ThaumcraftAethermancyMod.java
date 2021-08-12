@@ -7,8 +7,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
-import com.bryanf.aethermancy.aspects.ThaumcraftAspects;
-
 @Mod(modid = ThaumcraftAethermancyMod.MODID, name = ThaumcraftAethermancyMod.NAME, version = ThaumcraftAethermancyMod.VERSION, dependencies = "required-after:aether_legacy;required-after:thaumcraft")
 public class ThaumcraftAethermancyMod
 {
@@ -16,7 +14,7 @@ public class ThaumcraftAethermancyMod
     public static final String NAME = "Thaumcraft Aethermancy";
     public static final String VERSION = "0.1";
 
-    private static Logger logger;
+    public static Logger logger;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -33,6 +31,6 @@ public class ThaumcraftAethermancyMod
     @EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		ThaumcraftAspects.ApplyAspects();
+		
 	}
 }

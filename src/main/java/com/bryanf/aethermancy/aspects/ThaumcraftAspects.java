@@ -1,25 +1,43 @@
 package com.bryanf.aethermancy.aspects;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
+import org.apache.logging.log4j.Level;
 
+import com.bryanf.aethermancy.ThaumcraftAethermancyMod;
+import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.items.ItemsAether;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aspects.AspectRegistryEvent;
+import thaumcraft.api.internal.CommonInternals;
 
-
+@Mod.EventBusSubscriber(modid = "aethermancy")
 public class ThaumcraftAspects
 {
-	public static void ApplyAspects()
+	private static AspectRegistryEvent event;
+	
+	@SubscribeEvent	
+	public static void ApplyAspects(AspectRegistryEvent e)
 	{
+		ThaumcraftAethermancyMod.logger.log(Level.INFO, "Starting to apply TC aspects to Aether objects");
+		ThaumcraftAspects.event = e;
 		blocks();
 		items();
 		mobs();
+		ThaumcraftAethermancyMod.logger.log(Level.INFO, "Done applying TC aspects to Aether objects");
 	}
 	
 	private static void blocks()
 	{
-//		ThaumcraftApi.registerObjectTag(new ItemStack(BlocksAether.aether_portal), new int[]{0}, (new AspectList()).add(Aspect.WATER, 4).add(Aspect.TRAVEL, 4));
+		RegisterBlock(BlocksAether.aether_portal, new AspectList()
+													.add(Aspect.WATER, 4)
+													.add(Aspect.MOTION, 4));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(BlocksAether.AetherDirt), new int[]{0}, (new AspectList()).add(Aspect.EARTH, 2));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherBlocks.AetherGrass), new int[]{0}, (new AspectList().add(Aspect.PLANT, 1)).add(Aspect.EARTH, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherBlocks.EnchantedAetherGrass), new int[]{0}, (new AspectList().add(Aspect.PLANT, 1)).add(Aspect.EARTH, 1));
@@ -98,7 +116,9 @@ public class ThaumcraftAspects
 	}
 	private static void items()
 	{
-//		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootSword), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.WEAPON, 1));
+		RegisterItem(ItemsAether.skyroot_sword, new AspectList()
+													.add(Aspect.PLANT, 3)
+													.add(Aspect.AVERSION, 4));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootPickaxe), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.MINE, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootShovel), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.TOOL, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootAxe), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.TOOL, 1));
@@ -254,4 +274,23 @@ public class ThaumcraftAspects
 //		ThaumcraftApi.registerEntityTag("nexSpirit", (new AspectList()).add(Aspect.LIFE, 2));
 	}
 	
+	private static void RegisterBlock(Block b, AspectList aspects)
+	{
+		ItemStack stack = new ItemStack(b);
+		if (ThaumcraftApi.exists(stack)) return;
+		event.register.registerObjectTag(stack, aspects);
+	}
+	
+	private static void RegisterItem(Item i, AspectList aspects)
+	{
+		ItemStack stack = new ItemStack(i);
+		if (ThaumcraftApi.exists(stack)) return;
+		event.register.registerObjectTag(stack, aspects);
+	}
+	
+	private static void RegisterEntity(String entity_name, AspectList aspects)
+	{
+		ThaumcraftApi.EntityTags tags = new ThaumcraftApi.EntityTags(entity_name, aspects);
+		CommonInternals.scanEntities.add(tags);
+	}
 }
