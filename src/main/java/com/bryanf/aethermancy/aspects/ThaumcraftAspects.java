@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Level;
 
 import com.bryanf.aethermancy.ThaumcraftAethermancyMod;
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.blocks.util.*;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.block.Block;
@@ -38,6 +39,37 @@ public class ThaumcraftAspects
 		RegisterBlock(BlocksAether.aether_portal, new AspectList()
 													.add(Aspect.WATER, 4)
 													.add(Aspect.MOTION, 4));
+		RegisterBlock(BlocksAether.aether_dirt, new AspectList()
+				.add(Aspect.AIR, 3)
+				.add(Aspect.ORDER, 1));
+		RegisterBlock(BlocksAether.ambrosium_torch, new AspectList()
+				.add(Aspect.LIGHT, 5)
+				.add(Aspect.ENERGY, 1));
+		RegisterBlock(BlocksAether.aercloud, EnumCloudType.Blue.getMeta(), new AspectList()
+				.add(Aspect.FLIGHT, 10));
+		RegisterBlock(BlocksAether.golden_oak_sapling, new AspectList()
+				.add(Aspect.LIFE, 1)
+				.add(Aspect.DESIRE, 5)
+				.add(Aspect.PLANT, 11));
+		RegisterBlock(BlocksAether.holystone, new AspectList()
+				.add(Aspect.ORDER, 1)
+				.add(Aspect.SOUL, 3));
+		RegisterBlock(BlocksAether.holystone_brick, new AspectList()
+				.add(Aspect.ORDER, 3)
+				.add(Aspect.SOUL, 1));
+		RegisterBlock(BlocksAether.quicksoil, new AspectList()
+				.add(Aspect.EARTH, 3)
+				.add(Aspect.MOTION, 3)
+				.add(Aspect.ENTROPY, 3));
+		RegisterBlock(BlocksAether.skyroot_plank, new AspectList()
+				.add(Aspect.PLANT, 1)
+				.add(Aspect.FLIGHT, 2));
+		RegisterBlock(BlocksAether.skyroot_sapling, new AspectList()
+				.add(Aspect.PLANT, 15)
+				.add(Aspect.LIFE, 5));
+		RegisterBlock(BlocksAether.aether_log, EnumLogType.Oak.getMeta(), new AspectList()
+				.add(Aspect.PLANT, 7)
+				.add(Aspect.FLIGHT, 15));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(BlocksAether.AetherDirt), new int[]{0}, (new AspectList()).add(Aspect.EARTH, 2));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherBlocks.AetherGrass), new int[]{0}, (new AspectList().add(Aspect.PLANT, 1)).add(Aspect.EARTH, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherBlocks.EnchantedAetherGrass), new int[]{0}, (new AspectList().add(Aspect.PLANT, 1)).add(Aspect.EARTH, 1));
@@ -117,8 +149,46 @@ public class ThaumcraftAspects
 	private static void items()
 	{
 		RegisterItem(ItemsAether.skyroot_sword, new AspectList()
-													.add(Aspect.PLANT, 3)
-													.add(Aspect.AVERSION, 4));
+				.add(Aspect.SOUL, 1)
+				.add(Aspect.AVERSION, 8));
+		RegisterItem(ItemsAether.skyroot_pickaxe, new AspectList()
+				.add(Aspect.TOOL, 8)
+				.add(Aspect.AIR, 4));
+		RegisterItem(ItemsAether.skyroot_axe, new AspectList()
+				.add(Aspect.TOOL, 8)
+				.add(Aspect.AIR, 4));
+		RegisterItem(ItemsAether.skyroot_shovel, new AspectList()
+				.add(Aspect.TOOL, 5));
+		RegisterItem(ItemsAether.skyroot_stick, new AspectList()
+				.add(Aspect.FLIGHT, 1));
+		
+		RegisterItem(ItemsAether.ambrosium_shard, new AspectList()
+				.add(Aspect.ENERGY, 7)
+				.add(Aspect.LIFE, 1)
+				.add(Aspect.AIR, 5));
+		
+		RegisterItem(ItemsAether.swetty_ball, new AspectList()
+				.add(Aspect.WATER, 5)
+				.add(Aspect.AIR, 5));
+		RegisterItem(ItemsAether.lore_book, new AspectList()
+				.add(Aspect.MIND, 10)
+				.add(Aspect.SOUL, 10));
+		RegisterItem(ItemsAether.golden_parachute, new AspectList()
+				.add(Aspect.FLIGHT, 15)
+				.add(Aspect.MAGIC, 5)
+				.add(Aspect.DESIRE, 5));
+		RegisterItem(ItemsAether.white_apple, new AspectList()
+				.add(Aspect.PLANT, 3)
+				.add(Aspect.LIFE, 3)
+				.add(Aspect.MAGIC, 1));
+		RegisterItem(ItemsAether.moa_egg, new AspectList()
+				.add(Aspect.LIFE, 5)
+				.add(Aspect.BEAST, 5));
+		RegisterItem(ItemsAether.aechor_petal, new AspectList()
+				.add(Aspect.PLANT, 3)
+				.add(Aspect.DESIRE, 1)
+				.add(Aspect.AIR, 1));
+				
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootPickaxe), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.MINE, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootShovel), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.TOOL, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootAxe), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.TOOL, 1));
@@ -277,14 +347,22 @@ public class ThaumcraftAspects
 	private static void RegisterBlock(Block b, AspectList aspects)
 	{
 		ItemStack stack = new ItemStack(b);
-		if (ThaumcraftApi.exists(stack)) return;
+		if (ThaumcraftApi.exists(stack))
+		{
+			ThaumcraftAethermancyMod.logger.log(Level.WARN, "Attemped to Re-Register Block: "+b.getLocalizedName());
+			return;
+		}
 		event.register.registerObjectTag(stack, aspects);
 	}
 	
 	private static void RegisterItem(Item i, AspectList aspects)
 	{
 		ItemStack stack = new ItemStack(i);
-		if (ThaumcraftApi.exists(stack)) return;
+		if (ThaumcraftApi.exists(stack))
+		{
+			ThaumcraftAethermancyMod.logger.log(Level.WARN, "Attemped to Re-Register Item: "+i.getUnlocalizedName());
+			return;
+		}
 		event.register.registerObjectTag(stack, aspects);
 	}
 	
@@ -293,4 +371,26 @@ public class ThaumcraftAspects
 		ThaumcraftApi.EntityTags tags = new ThaumcraftApi.EntityTags(entity_name, aspects);
 		CommonInternals.scanEntities.add(tags);
 	}
+	
+	private static void RegisterBlock(Block b, int meta_data, AspectList list)
+	{
+		ItemStack stack = new ItemStack(b, 1, meta_data);
+		if (ThaumcraftApi.exists(stack))
+		{
+			ThaumcraftAethermancyMod.logger.log(Level.WARN, "Attemped to Re-Register Block: "+b.getLocalizedName());
+			return;
+		}
+		event.register.registerObjectTag(stack, list);
+	}
+
+	/**
+	 * Will register the block with each specified meta data.
+	 * @param b The block to register
+	 * @param meta_data The meta data
+	 * @param list The list of aspects to apply to each block+meta data
+	 */
+    private static void RegisterBlock(Block b, int[] meta_data, AspectList list) 
+    {
+        for (int meta : meta_data) RegisterBlock(b, meta, list);
+    }
 }

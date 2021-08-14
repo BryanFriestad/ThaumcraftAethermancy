@@ -1,0 +1,29 @@
+Added Aspect mappings for the following Items:
+	- Aechor Petal
+	- Ambrosium Shard
+	- Book of Lore
+	- Golden Parachute
+	- Holystone Axe
+	- Holystone Pickaxe
+	- Holystone Shovel
+	- Holystone Sword
+	- Moa Egg
+	- Skyroot Stick
+	- Swet Ball
+	- White Apple
+	
+Added Aspect mappings for the following Blocks:
+	- Aether Dirt
+	- Ambrosium Torch
+	- Blue Aercloud
+	- Golden Oak Sapling
+	- Holystone
+	- Holystone Brick
+	- Quicksoil
+	- Skyroot Log
+	- Skyroot Plank
+	- Skyroot Sapling
+	
+Added Dimension exclusions for Aether and Twilight Forest dimension, so that Thaumcraft does not spawn mobs in these dimensions.
+
+Added some new helper functions to assist in setting aspects for blocks with different metadata.
