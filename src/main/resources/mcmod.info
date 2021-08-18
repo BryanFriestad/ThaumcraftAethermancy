@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "aethermancy",
+  "name": "Thaumcraft Aethermancy",
+  "description": "Adding Thaumcraft 6 aspects to The Aether I.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/thaumcraft-aethermancy",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Bryan Friestad"],
+  "credits": "Brendan Freeman, for making the Aether Aspects mod, which I aim to recreate for most recent version of TC",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
