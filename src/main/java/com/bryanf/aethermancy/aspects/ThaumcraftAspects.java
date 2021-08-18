@@ -3,24 +3,30 @@ package com.bryanf.aethermancy.aspects;
 import org.apache.logging.log4j.Level;
 
 import com.bryanf.aethermancy.ThaumcraftAethermancyMod;
+
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.util.EnumCloudType;
 import com.gildedgames.the_aether.blocks.util.EnumLogType;
 import com.gildedgames.the_aether.blocks.util.EnumStoneType;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumDartType;
-import com.gildedgames.the_aether.api.moa.MoaProperties;
+import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
+
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.AspectRegistryEvent;
 import thaumcraft.api.internal.CommonInternals;
+import thaumcraft.api.research.ScanEntity;
+import thaumcraft.api.research.ScanningManager;
 
 @Mod.EventBusSubscriber(modid = "aethermancy")
 public class ThaumcraftAspects
@@ -96,6 +102,13 @@ public class ThaumcraftAspects
 				.add(Aspect.COLD, 10)
 				.add(Aspect.CRYSTAL, 10));
 		
+		RegisterBlock(BlocksAether.aether_log, EnumLogType.Skyroot.getMeta(), new AspectList()
+				.add(Aspect.PLANT, 7)
+				.add(Aspect.FLIGHT, 15));
+		RegisterBlock(BlocksAether.aether_log, EnumLogType.Oak.getMeta(), new AspectList()
+				.add(Aspect.PLANT, 7)
+				.add(Aspect.FLIGHT, 10)
+				.add(Aspect.DESIRE, 5));
 		RegisterBlock(BlocksAether.skyroot_plank, new AspectList()
 				.add(Aspect.PLANT, 1)
 				.add(Aspect.FLIGHT, 2));
@@ -106,13 +119,7 @@ public class ThaumcraftAspects
 		RegisterBlock(BlocksAether.incubator, new AspectList()
 				.add(Aspect.LIFE, 20));
 		
-		for (EnumLogType log : EnumLogType.values())
-		{
-			ThaumcraftAethermancyMod.logger.log(Level.INFO, log.name()+" log type has meta data value of "+log.getMeta());
-		}
-		RegisterBlock(BlocksAether.aether_log, EnumLogType.Skyroot.getMeta(), new AspectList()
-				.add(Aspect.PLANT, 7)
-				.add(Aspect.FLIGHT, 15));
+		
 		
 		RegisterBlock(BlocksAether.gravitite_ore, new AspectList()
 				.add(Aspect.METAL, 10)
@@ -180,34 +187,34 @@ public class ThaumcraftAspects
 	private static void items()
 	{
 		// SKYROOT TOOLS
-		RegisterItem(ItemsAether.skyroot_sword, new AspectList()
+		RegisterItem(ItemsAether.skyroot_sword, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.SOUL, 1)
 				.add(Aspect.AVERSION, 8));
-		RegisterItem(ItemsAether.skyroot_pickaxe, new AspectList()
+		RegisterItem(ItemsAether.skyroot_pickaxe, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.TOOL, 8)
 				.add(Aspect.AIR, 4));
-		RegisterItem(ItemsAether.skyroot_axe, new AspectList()
+		RegisterItem(ItemsAether.skyroot_axe, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.TOOL, 8)
 				.add(Aspect.AIR, 4));
-		RegisterItem(ItemsAether.skyroot_shovel, new AspectList()
+		RegisterItem(ItemsAether.skyroot_shovel, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.TOOL, 5));
 		
 		// ZANITE TOOLS
-		RegisterItem(ItemsAether.zanite_gemstone, new AspectList()
+		RegisterItem(ItemsAether.zanite_gemstone,  new AspectList()
 				.add(Aspect.CRYSTAL, 15)
 				.add(Aspect.MAGIC, 5));
-		RegisterItem(ItemsAether.zanite_axe, new AspectList()
+		RegisterItem(ItemsAether.zanite_axe, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.CRYSTAL, 35)
 				.add(Aspect.TOOL, 14)
 				.add(Aspect.MAGIC, 1));
-		RegisterItem(ItemsAether.zanite_pickaxe, new AspectList()
+		RegisterItem(ItemsAether.zanite_pickaxe, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.CRYSTAL, 35)
 				.add(Aspect.TOOL, 14)
 				.add(Aspect.MAGIC, 1));
-		RegisterItem(ItemsAether.zanite_shovel, new AspectList()
+		RegisterItem(ItemsAether.zanite_shovel, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.TOOL, 5)
 				.add(Aspect.CRYSTAL, 12));
-		RegisterItem(ItemsAether.zanite_sword, new AspectList()
+		RegisterItem(ItemsAether.zanite_sword, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.CRYSTAL, 20)
 				.add(Aspect.AVERSION, 10)
 				.add(Aspect.MAGIC, 2));
@@ -232,7 +239,7 @@ public class ThaumcraftAspects
 				.add(Aspect.MIND, 10)
 				.add(Aspect.SOUL, 10));
 		
-		RegisterItem(ItemsAether.golden_parachute, new AspectList()
+		RegisterItem(ItemsAether.golden_parachute, OreDictionary.WILDCARD_VALUE, new AspectList()
 				.add(Aspect.FLIGHT, 15)
 				.add(Aspect.MAGIC, 5)
 				.add(Aspect.DESIRE, 5));
@@ -380,13 +387,15 @@ public class ThaumcraftAspects
 	
 	private static void mobs()
 	{
+		RegisterEntity("phyg", new AspectList()
+				.add(Aspect.BEAST, 10)
+				.add(Aspect.FLIGHT, 10));
 //		ThaumcraftApi.registerEntityTag("zephyr", (new AspectList()).add(Aspect.AIR, 2).add(Aspect.FLIGHT, 1));
 //		ThaumcraftApi.registerEntityTag("cockatrice", (new AspectList()).add(Aspect.POISON, 1).add(Aspect.TAINT, 2).add(Aspect.BEAST, 1));
 //		ThaumcraftApi.registerEntityTag("swet", (new AspectList()).add(Aspect.SLIME, 1).add(Aspect.TRAP, 1).add(Aspect.MOTION, 1));
 //		ThaumcraftApi.registerEntityTag("aechorPlant", (new AspectList()).add(Aspect.PLANT, 2).add(Aspect.POISON, 1).add(Aspect.TAINT, 1));
 //		ThaumcraftApi.registerEntityTag("sentry", (new AspectList()).add(Aspect.MECHANISM, 2).add(Aspect.TRAP, 2).add(Aspect.FIRE, 1));
 //		ThaumcraftApi.registerEntityTag("mimic", (new AspectList()).add(Aspect.VOID, 2).add(Aspect.MIND, 1).add(Aspect.TRAP, 2));
-//		ThaumcraftApi.registerEntityTag("phyg", (new AspectList()).add(Aspect.FLIGHT, 2).add(Aspect.MAGIC, 1));
 //		ThaumcraftApi.registerEntityTag("aerbunny", (new AspectList()).add(Aspect.AIR, 1).add(Aspect.MOTION, 1).add(Aspect.LIFE, 1));
 //		ThaumcraftApi.registerEntityTag("moa", (new AspectList()).add(Aspect.FLIGHT, 2).add(Aspect.MOTION, 2));
 //		ThaumcraftApi.registerEntityTag("sheepuff", (new AspectList()).add(Aspect.AIR, 1).add(Aspect.LIFE, 1));
@@ -472,5 +481,6 @@ public class ThaumcraftAspects
 	{
 		ThaumcraftApi.EntityTags tags = new ThaumcraftApi.EntityTags(entity_name, aspects);
 		CommonInternals.scanEntities.add(tags);
+//		ScanningManager.addScannableThing(new ScanEntity(entity_name, null, false));
 	}
 }

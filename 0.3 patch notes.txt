@@ -1,3 +1,7 @@
 Added Aspect mappings for the following Items: Enchanted Dart, Golden Dart, Swet Cape, Zanite Axe, Zanite Gemsone, Zanite Pickaxe, Zanite Shovel, Zanite Sword
 	
 Added Aspect mappings for the following Blocks: Cold Aercloud, Freezer, Golden Aercloud, Gravitite Ore, Icestone, Incubator, Mossy Holystone, Purple Flower, Sentry Stone, White Flower
+
+Added Aspect mappings for the following Entities: Phyg
+
+Fixed issue with Golden Parachute where aspects didn't show for all durability levels.
