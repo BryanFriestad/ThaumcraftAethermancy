@@ -8,6 +8,7 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.util.EnumCloudType;
 import com.gildedgames.the_aether.blocks.util.EnumLogType;
 import com.gildedgames.the_aether.blocks.util.EnumStoneType;
+
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumDartType;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
@@ -15,6 +16,7 @@ import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -249,18 +251,34 @@ public class ThaumcraftAspects
 				.add(Aspect.LIFE, 3)
 				.add(Aspect.MAGIC, 1));
 		
-		RegisterItem(ItemsAether.moa_egg, 0, new AspectList()
+//		NBTTagCompound white_moa_egg_nbt = new NBTTagCompound();
+//		white_moa_egg_nbt.setInteger("typeId", 0);
+//		RegisterItem(ItemsAether.moa_egg, white_moa_egg_nbt,  new AspectList()
+//				.add(Aspect.LIFE, 8)
+//				.add(Aspect.BEAST, 8));
+//		
+//		NBTTagCompound blue_moa_egg_nbt = new NBTTagCompound();
+//		blue_moa_egg_nbt.setInteger("typeId", 1);
+//		RegisterItem(ItemsAether.moa_egg, blue_moa_egg_nbt,  new AspectList()
+//				.add(Aspect.LIFE, 9)
+//				.add(Aspect.BEAST, 9));
+//		
+//		NBTTagCompound black_moa_egg_nbt = new NBTTagCompound();
+//		black_moa_egg_nbt.setInteger("typeId", 2);
+//		RegisterItem(ItemsAether.moa_egg, black_moa_egg_nbt,  new AspectList()
+//				.add(Aspect.LIFE, 10)
+//				.add(Aspect.BEAST, 10));
+//		
+//		NBTTagCompound orange_moa_egg_nbt = new NBTTagCompound();
+//		orange_moa_egg_nbt.setInteger("typeId", 3);
+//		RegisterItem(ItemsAether.moa_egg, orange_moa_egg_nbt,  new AspectList()
+//				.add(Aspect.LIFE, 11)
+//				.add(Aspect.BEAST, 11));
+		
+		RegisterItem(ItemsAether.moa_egg, new AspectList()
 				.add(Aspect.LIFE, 8)
-				.add(Aspect.BEAST, 8));
-		RegisterItem(ItemsAether.moa_egg, 1, new AspectList()
-				.add(Aspect.LIFE, 9)
-				.add(Aspect.BEAST, 9));
-		RegisterItem(ItemsAether.moa_egg, 2, new AspectList()
-				.add(Aspect.LIFE, 10)
-				.add(Aspect.BEAST, 10));
-		RegisterItem(ItemsAether.moa_egg, 3, new AspectList()
-				.add(Aspect.LIFE, 11)
-				.add(Aspect.BEAST, 11));
+				.add(Aspect.BEAST, 8)
+				.add(Aspect.FLIGHT, 8));
 		
 		RegisterItem(ItemsAether.aechor_petal, new AspectList()
 				.add(Aspect.PLANT, 3)
@@ -269,7 +287,7 @@ public class ThaumcraftAspects
 		
 		RegisterItem(ItemsAether.dart, EnumDartType.Golden.getMeta(), new AspectList()
 				.add(Aspect.AVERSION, 10)
-				.add(Aspect.FLIGHT, 3));
+				.add(Aspect.FLIGHT, 2));
 		RegisterItem(ItemsAether.dart, EnumDartType.Enchanted.getMeta(), new AspectList()
 				.add(Aspect.AVERSION, 10)
 				.add(Aspect.FLIGHT, 3)
@@ -279,11 +297,6 @@ public class ThaumcraftAspects
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.HolystonePickaxe), new int[]{0}, (new AspectList()).add(Aspect.EARTH, 3).add(Aspect.ENTROPY, 3).add(Aspect.MINE, 2));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.HolystoneShovel), new int[]{0}, (new AspectList()).add(Aspect.TREE, 2).add(Aspect.TOOL, 2).add(Aspect.EARTH, 1).add(Aspect.ENTROPY, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.HolystoneAxe), new int[]{0}, (new AspectList()).add(Aspect.TREE, 3).add(Aspect.EARTH, 3).add(Aspect.ENTROPY, 3).add(Aspect.TOOL, 2));
-//		
-//		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.ZaniteSword), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL, 5).add(Aspect.WEAPON,3).add(Aspect.TREE, 1));
-//		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.ZanitePickaxe), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL, 6).add(Aspect.MINE, 3));
-//		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.ZaniteShovel), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL, 4).add(Aspect.TOOL, 3).add(Aspect.TREE, 2));
-//		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.ZaniteAxe), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL, 6).add(Aspect.TOOL, 3));
 //		
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.GravititeSword), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL, 5).add(Aspect.GREED,5).add(Aspect.WEAPON,4).add(Aspect.TREE, 1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.GravititePickaxe), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL, 6).add(Aspect.GREED, 6).add(Aspect.MINE, 4));
@@ -322,7 +335,6 @@ public class ThaumcraftAspects
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.PiggieBank), new int[]{0}, (new AspectList()).add(Aspect.EXCHANGE,4));
 //		
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.GoldenAmber), new int[]{0}, (new AspectList()).add(Aspect.GREED,2));
-//		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.ZaniteGemstone), new int[]{0}, (new AspectList()).add(Aspect.CRYSTAL,1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.ContinuumOrb), new int[]{0}, (new AspectList()).add(Aspect.ELDRITCH,2));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SwetJelly), new int[]{0}, (new AspectList()).add(Aspect.FLESH,1));
 //		ThaumcraftApi.registerObjectTag(new ItemStack(AetherItems.SkyrootBowl), new int[]{0}, (new AspectList()).add(Aspect.TREE,1));
@@ -477,10 +489,20 @@ public class ThaumcraftAspects
 		event.register.registerObjectTag(stack, aspects);
 	}
 	
+	private static void RegisterItem(Item i, NBTTagCompound nbts, AspectList aspects)
+	{
+		ItemStack stack = new ItemStack(i, 1, 0, nbts);
+		if (ThaumcraftApi.exists(stack))
+		{
+			ThaumcraftAethermancyMod.logger.log(Level.WARN, "Attemped to Re-Register Item: "+i.getUnlocalizedName());
+			return;
+		}
+		event.register.registerObjectTag(stack, aspects);
+	}
+	
 	private static void RegisterEntity(String entity_name, AspectList aspects)
 	{
 		ThaumcraftApi.EntityTags tags = new ThaumcraftApi.EntityTags(entity_name, aspects);
 		CommonInternals.scanEntities.add(tags);
-//		ScanningManager.addScannableThing(new ScanEntity(entity_name, null, false));
 	}
 }

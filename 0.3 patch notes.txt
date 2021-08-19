@@ -1,7 +1,11 @@
-Added Aspect mappings for the following Items: Enchanted Dart, Golden Dart, Swet Cape, Zanite Axe, Zanite Gemsone, Zanite Pickaxe, Zanite Shovel, Zanite Sword
+Added Aspect mappings for the following Items: Enchanted Dart, Golden Dart, Swet Cape, Zanite Axe, Zanite Gemsone, Zanite Pickaxe, Zanite Shovel*, Zanite Sword
 	
 Added Aspect mappings for the following Blocks: Cold Aercloud, Freezer, Golden Aercloud, Gravitite Ore, Icestone, Incubator, Mossy Holystone, Purple Flower, Sentry Stone, White Flower
 
 Added Aspect mappings for the following Entities: Phyg
 
 Fixed issue with Golden Parachute where aspects didn't show for all durability levels.
+
+Known Issues: The Zanite Shovel has 12 Tool and 12 Crystal, when it should only have 5 tool. Must be an issue with pre-existing default aspects in TC. Not sure why this one tool is having issues.
+
+Updated mcmod.info and pack.mcmeta files
