@@ -1,0 +1,7 @@
+Added Aspect mappings for the following Items: Empty Skyroot Bucket, Poison Skyroot Bucket, Blueberry, Golden Dart Shooter, Poison Dart, Golden Amber
+	
+Added Aspect mappings for the following Blocks: Pillar, Pillar Top, Berry Bush Stem, Berry Bush, Enchanted Gravitite
+
+Added Aspect mappings for the following Entities: 
+
+Reset Skyroot, Holystone, Zanite and Gravitite tools/weapons to default aspects added from crafting recipe.

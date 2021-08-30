@@ -18,7 +18,7 @@ public class ThaumcraftAethermancyMod
 {
     public static final String MODID = "aethermancy";
     public static final String NAME = "Thaumcraft Aethermancy";
-    public static final String VERSION = "0.3";
+    public static final String VERSION = "0.4";
 
     public static Logger logger;
     
