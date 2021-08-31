@@ -13,12 +13,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.gildedgames.the_aether.AetherConfig;
 
-@Mod(modid = ThaumcraftAethermancyMod.MODID, name = ThaumcraftAethermancyMod.NAME, version = ThaumcraftAethermancyMod.VERSION, dependencies = "required-after:aether_legacy;required-after:thaumcraft")
+@Mod(modid = ThaumcraftAethermancyMod.MODID, dependencies = "required-after:aether_legacy;required-after:thaumcraft", useMetadata = true)
 public class ThaumcraftAethermancyMod
 {
     public static final String MODID = "aethermancy";
-    public static final String NAME = "Thaumcraft Aethermancy";
-    public static final String VERSION = "0.4";
 
     public static Logger logger;
     

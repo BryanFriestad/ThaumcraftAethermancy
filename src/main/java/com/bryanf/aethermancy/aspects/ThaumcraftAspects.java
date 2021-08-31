@@ -84,14 +84,16 @@ public class ThaumcraftAspects
 				.add(Aspect.PLANT, 5));
 		
 		RegisterBlock(BlocksAether.holystone, new AspectList()
-				.add(Aspect.ORDER, 1)
-				.add(Aspect.SOUL, 3));
-		RegisterBlock(BlocksAether.holystone_brick, new AspectList()
-				.add(Aspect.ORDER, 3)
+				.add(Aspect.EARTH, 3)
 				.add(Aspect.SOUL, 1));
+		RegisterBlock(BlocksAether.holystone_brick, new AspectList()
+				.add(Aspect.ORDER, 1)
+				.add(Aspect.SOUL, 1)
+				.add(Aspect.EARTH, 3));
 		RegisterBlock(BlocksAether.mossy_holystone, new AspectList()
 				.add(Aspect.ORDER, 1)
-				.add(Aspect.SOUL, 3)
+				.add(Aspect.SOUL, 1)
+				.add(Aspect.EARTH, 3)
 				.add(Aspect.PLANT, 2));
 		
 		// DUNGEON BLOCKS

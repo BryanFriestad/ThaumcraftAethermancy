@@ -3,14 +3,10 @@
   "modid": "aethermancy",
   "name": "Thaumcraft Aethermancy",
   "description": "Adding Thaumcraft 6 aspects to The Aether I.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "version": "0.4",
+  "mcversion": "1.12.2",
   "url": "https://www.curseforge.com/minecraft/mc-mods/thaumcraft-aethermancy",
-  "updateUrl": "",
   "authorList": ["Bryan Friestad"],
-  "credits": "Brendan Freeman, for making the Aether Aspects mod, which I aim to recreate for most recent version of TC",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
+  "credits": "Brendan Freeman, for making the Aether Aspects mod, which I aim to recreate for most recent version of TC"
 }
 ]

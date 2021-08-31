@@ -1,7 +1,11 @@
+THE ENTITY UPDATE!
+
 Added Aspect mappings for the following Items: Empty Skyroot Bucket, Poison Skyroot Bucket, Blueberry, Golden Dart Shooter, Poison Dart, Golden Amber
 	
 Added Aspect mappings for the following Blocks: Pillar, Pillar Top, Berry Bush Stem, Berry Bush, Enchanted Gravitite
 
-Added Aspect mappings for the following Entities: 
+Added Aspect mappings for the following Entities: Aechor Plant, Aerbunny, Aerwhale, Cockatrice, Fire Minion, Flying Cow, Mimic, Moa, Sentry, Sheepuff, Slider, Sun Spirit, Swet, Valkyrie, Valkyrie Queen, Whirlwind, Zephyr 
 
 Reset Skyroot, Holystone, Zanite and Gravitite tools/weapons to default aspects added from crafting recipe.
+
+Remove Ordo aspect from Holystone, replaced with Terra. It's now easy enough to get Ordo from Pillars.
